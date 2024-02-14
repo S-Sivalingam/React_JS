@@ -6,6 +6,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Link } from 'react-router-dom';
 import { useState } from "react";
 import axios from "axios";
+import swal from 'sweetalert';
 export const Login = () => {
   const [email,setEmail]=useState(null);
   const [password,setPassword]=useState(null);
@@ -14,8 +15,8 @@ export const Login = () => {
 };
 const loginUser = ()=>{
   if(email && password){
-    if(!validateEmail(email)) return alert("Email Not Valid")
-    alert("Success")
+    if(!validateEmail(email)) return swal("Email Not Valid")
+    swal("Success")
     axios.post('https:/localhost:7000/api/v1/user/login', {
       email,
       password
