@@ -4,10 +4,9 @@ import { Button, TextField, Typography } from "@mui/material";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link } from "react-router-dom";
-import { useRef, useState, useEffect } from "react";
+import {  useState } from "react";
 import axios from "axios";
-import { AirportShuttle } from "@mui/icons-material";
-
+import {swal} from 'sweetalert';
 
 const Signup = () => {
   const [email,setEmail]=useState(null);
@@ -20,11 +19,11 @@ const Signup = () => {
 
   const createUser = ()=>{
     if(email && password && confirmPassword){
-      if(!validateEmail(email)) return alert("Email Not Valid")
+      if(!validateEmail(email)) return swal("Email Not Valid")
     
-      if(password!=confirmPassword) return alert("Passwords did't match")
-      if(password.length < 6) return alert("Password length atleast 6 character")
-      alert("Success")
+      if(password!=confirmPassword) return swal("Passwords did't match")
+      if(password.length < 6) return swal("Password length atleast 6 character")
+      swal("Success")
       axios.post('https:/localhost:7000/api/v1/user/new', {
         email,
         password
@@ -38,7 +37,7 @@ const Signup = () => {
 
     }
     else{
-      alert("Enter all fields");
+      swal("Enter all fields");
     }
   }
 
@@ -63,7 +62,7 @@ const Signup = () => {
             ),
           }}
         />
-        <small>Error Message</small>
+
 
         <TextField
           id="pass-log"
