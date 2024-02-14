@@ -8,6 +8,7 @@ import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import { AirportShuttle } from "@mui/icons-material";
 
+
 const Signup = () => {
   const [email,setEmail]=useState(null);
   const [password,setPassword]=useState(null);
@@ -20,6 +21,7 @@ const Signup = () => {
   const createUser = ()=>{
     if(email && password && confirmPassword){
       if(!validateEmail(email)) return alert("Email Not Valid")
+    
       if(password!=confirmPassword) return alert("Passwords did't match")
       if(password.length < 6) return alert("Password length atleast 6 character")
       alert("Success")
