@@ -24,7 +24,8 @@ export const Login = () => {
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       );
   };
-  const loginUser = async () => {
+  const loginUser = async (e) => {
+    e.preventDefault()
     if (!(email && password))
       return swal.fire({
         title: "Error",
@@ -73,7 +74,7 @@ export const Login = () => {
 
   return (
     <>
-      <body id="body">
+      <form id="body" onSubmit={loginUser}>
         <Typography>
           <h2 id="h2-log">Login </h2>
           <div id="underline"></div>
@@ -82,6 +83,7 @@ export const Login = () => {
           id="mail-log"
           label="Email"
           type="email "
+          required
           onChange={(e) => setEmail(e.target.value)}
           InputProps={{
             startAdornment: (
@@ -94,6 +96,7 @@ export const Login = () => {
           id="pass-log"
           label="Password"
           type="password"
+          required
           onChange={(e) => setPassword(e.target.value)}
           InputProps={{
             startAdornment: (
@@ -113,7 +116,7 @@ export const Login = () => {
             Forget Password?
           </Link>
         </div>
-        <Button id="btn" onClick={loginUser} variant="contained">
+        <Button id="btn" type="submit" variant="contained">
           Login
         </Button>
         <div id="aup-log">
@@ -122,7 +125,7 @@ export const Login = () => {
             &nbsp; Signup
           </Link>
         </div>
-      </body>
+      </form>
     </>
   );
 };

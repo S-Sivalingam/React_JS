@@ -9,6 +9,7 @@ import axios from "axios";
 import swal from 'sweetalert2';
 
 const Signup = () => {
+  
   const [email,setEmail]=useState(null);
   const [password,setPassword]=useState(null);
   const [confirmPassword,setConfirmPassword]=useState(null);
@@ -17,27 +18,64 @@ const Signup = () => {
     return String(email).toLowerCase().match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 };
 
-  const createUser = ()=>{
+  const createUser = async(e) => {
+    e.preventDefault()
     if(email && password && confirmPassword){
-      if(!validateEmail(email)) return swal("Email Not Valid")
-    
-      if(password!=confirmPassword) return swal("Passwords did't match")
-      if(password.length < 6) return swal("Password length atleast 6 character")
-      swal("Success")
-      axios.post('https:/localhost:7000/api/v1/user/new', {
-        email,
-        password
-      })
-      .then( (response)=> {
-        console.log(response);
-      })
-      .catch( (error) => {
-        console.log(error);
+      if(!validateEmail(email)) return swal.fire({
+        title: "Error",
+        text: "Email not Valid",
+        icon: "error",
       });
+      if(password !== confirmPassword) return  swal.fire({
+        title: "Error",
+        text: "Passwords did't match",
+        icon: "error",
+      });
+      if(password.length < 6) return  swal.fire({
+        title: "Error",
+        text: "Password length must be at least 6 characters",
+        icon: "error",
+      });
+      try {
+        const response = await axios.post(
+          "http://localhost:7000/api/v1/user/signup",
+          {
+            email,
+            password,
+          }
+        );
+        if (response.status !== 200)
+          return swal.fire({
+            title: response.statusText,
+            text: response.data,
+            icon: "error",
+          });
+        swal.fire({
+          title: "Success",
+          text: response.data.message,
+          icon: "success",
+          timer: 3000,
+        });
+        localStorage.setItem("bulkmailusertoken", response.data.token);
+      } catch (error) {
+        if (error.response.status) {
+          swal.fire({
+            title: error.response.statusText,
+            text: error.response.data,
+            icon: "error",
+          });
+        } else {
+          swal.fire({ title: "Error", text: error.message, icon: "error" });
+        }
+      }
 
     }
     else{
-      swal("Enter all fields");
+      swal.fire({
+        title: "Error",
+        text: "Enter all Fields",
+        icon: "error",
+      });
     }
   }
 
@@ -45,7 +83,7 @@ const Signup = () => {
 
   return (
     <>
-      <div id="body">
+      <form id="body" onSubmit={createUser}>
         <Typography>
           <h2 id="h2-sign">Signup</h2>
           <div id="underline"></div>
@@ -54,7 +92,7 @@ const Signup = () => {
           id="mail-log"
           label="Email"
           type="email"
-         
+          required
           onChange={(e)=>setEmail(e.target.value)}
           InputProps={{
             startAdornment: (
@@ -68,6 +106,7 @@ const Signup = () => {
           id="pass-log"
           label="Password"
           type="password"
+          required
           onChange={(e)=>setPassword(e.target.value)}
           InputProps={{
             startAdornment: (
@@ -80,6 +119,7 @@ const Signup = () => {
           id="conpass-log"
           label="Confirm Password"
           type="password"
+          required
           onChange={(e)=>setConfirmPassword(e.target.value)}
           InputProps={{
             startAdornment: (
@@ -87,7 +127,7 @@ const Signup = () => {
             ),
           }}
         />
-        <Button id="btn-signin" onClick={createUser} variant="contained">
+        <Button id="btn-signin" type="submit" variant="contained">
           Signup
         </Button>
         <div id="aup-log">
@@ -96,7 +136,7 @@ const Signup = () => {
             &nbsp; Login
           </Link>
         </div>
-      </div>
+      </form>
     </>
   );
 };
