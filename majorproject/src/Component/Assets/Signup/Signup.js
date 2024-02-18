@@ -6,7 +6,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link } from "react-router-dom";
 import {  useState } from "react";
 import axios from "axios";
-import swal from 'sweetalert';
+import swal from 'sweetalert2';
 
 const Signup = () => {
   const [email,setEmail]=useState(null);
