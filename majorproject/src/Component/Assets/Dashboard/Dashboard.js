@@ -9,10 +9,11 @@ const Dashboard =() =>{
     <>
     <div className="dashboard">
       <Sidebar />
-    </div>
+      
     <div className="dashboard--content">
       <Content />
       <Profile />
+    </div>
     </div>
     </>
   )
