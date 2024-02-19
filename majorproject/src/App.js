@@ -8,12 +8,10 @@ function App() {
   return (
    <>
     <Routes>
-      <Route path='/' Component={Login}  />
-     < Route path='/Signup' Component={Signup} />
-     <Route  path='/Dashboard' Component={Dashboard} />
+     <Route path='/' Component={Login}  />
+     <Route path='/Signup' Component={Signup} />
+     <Route path='/Dashboard' Component={Dashboard} />
     </Routes>
-  
-  
 
    </>
   );
