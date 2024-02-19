@@ -1,9 +1,11 @@
 import React from 'react'
-import '.\E:\React_JS\majorproject\src\Component\Assets\Dashboard\Sidebar\Sidebar.css'
+import './Sidebar.css'
 
 const Sidebar = () => {
   return (
-    <div>Sidebar</div>
+    <div className='body'>
+      
+    </div>
   )
 }
 export default Sidebar
