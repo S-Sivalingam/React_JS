@@ -7,6 +7,15 @@ import { Link } from "react-router-dom";
 import {  useState } from "react";
 import axios from "axios";
 import swal from 'sweetalert2';
+import { styled } from '@mui/system';
+
+const MyTextField = styled(TextField)(({ theme }) => ({
+  '& .MuiInputBase-root': {
+    '&.Mui-focused fieldset': {
+      borderColor: '#27374d', // Focused border color
+    },
+  },
+}));
 
 const Signup = () => {
   
@@ -83,17 +92,19 @@ const Signup = () => {
 
   return (
     <>
-      <form id="body" onSubmit={createUser}>
+      <form id="body" onSubmit={createUser} >
         <Typography>
           <h2 id="h2-sign">Signup</h2>
           <div id="underline"></div>
         </Typography>
-        <TextField
+        <MyTextField
           id="mail-log"
           label="Email"
           type="email"
           required
           onChange={(e)=>setEmail(e.target.value)}
+
+          // inputProps={{ style: { fontFamily: 'nunito', color: 'white' } }}
           InputProps={{
             startAdornment: (
               <EmailOutlinedIcon style={{ marginRight: "8px" }} id="lock" />
@@ -102,7 +113,7 @@ const Signup = () => {
         />
 
 
-        <TextField
+        <MyTextField
           id="pass-log"
           label="Password"
           type="password"
@@ -113,9 +124,11 @@ const Signup = () => {
               <LockOutlinedIcon style={{ marginRight: "8px" }} id="lock" />
             ),
           }}
+          
+
         />
 
-        <TextField
+        <MyTextField
           id="conpass-log"
           label="Confirm Password"
           type="password"

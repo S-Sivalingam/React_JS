@@ -5,6 +5,7 @@
     gap: 15px;
     margin: 0%;
     padding: 0;
+    background-color: #dde6ed;
 }
 #h2-log{
     font-size: 35px;
@@ -14,14 +15,14 @@
     width: 90px;
     height: 40px;
     margin: auto;
-    color:#424141
+    color:#27374d;
 }
 #underline{
     position: relative;
     bottom: 30px;
     width: 58px;
     height: 4px;
-    background-color:#424141;
+    background-color:#27374d;
     border-radius: 9px;
     margin: auto;
 }
@@ -32,6 +33,7 @@
     position: relative;
     left: 5px;
     bottom: 16px;
+    
 }
 #rem-log{
     position: relative;
@@ -45,14 +47,15 @@
 }
 
 #lock{
-    color:#424141;
+    color:#27374d;
 }
 #fgt{
     text-align: end;
     text-decoration: none;
     position: relative;
     top: -10px;
-    color:  #1976D2;
+    color:  #27374d;
+    font-weight: 600;
 }
 #btn{
     width: 110px;
@@ -60,6 +63,8 @@
     margin: auto;
     position: relative;
     bottom: 35px;
+    color: #dde6ed;
+    background-color: #27374d;
 }
 
 #dont-log{
@@ -71,7 +76,7 @@
     bottom: 30px;
     text-decoration: none;
     font-weight: bold;
-    color:  #1976D2;
+    color:  #27374d;
 }
 #aup-log{
     margin: auto;

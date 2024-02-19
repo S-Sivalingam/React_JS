@@ -5,6 +5,7 @@
     gap: 15px;
     margin: 0%;
     padding: 0;
+    background: #dde6ed;
 }
 #h2-sign{
     font-size: 35px;
@@ -14,20 +15,21 @@
     width: 90px;
     height: 40px;
     margin: auto;
-    color:#424141
+    color:#27374d
 }
 #underline{
     position: relative;
     bottom: 30px;
     width: 69px;
     height: 4px;
-    background-color:#424141;
+    background-color:#27374d;
     border-radius: 9px;
     margin: auto;
 }
 #mail-log{
     width: 250px;
 }
+
 #chk-log{
     position: relative;
     left: 5px;
@@ -45,7 +47,7 @@
 }
 
 #lock{
-    color:#424141;
+    color:#27374d;
 }
 #fgt{
     text-align: end;
@@ -59,6 +61,8 @@
     margin: auto;
     position: relative;
     bottom: 1px;
+    color: #dde6ed;
+    background-color: #27374d;
 }
 
 #al-sign{
@@ -70,7 +74,7 @@
     top: 1px;
     text-decoration: none;
     font-weight: bold;
-    color:  #1976D2;
+    color:  #27374d;
 }
 #aup-log{
     margin: auto;

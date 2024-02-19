@@ -14,6 +14,24 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert2";
+import { styled } from '@mui/system';
+
+
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+const MyTextField = styled(TextField)(({ theme }) => ({
+  '& .MuiInputBase-root': {
+    '&.Mui-focused fieldset': {
+      borderColor: '#27374d', // Focused border color
+    },
+    '&.Mui-focused .MuiInputLabel-root': {
+      color: '#27374d', // Focused label color
+    },
+  },
+}));
+
+
+
 export const Login = () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -79,10 +97,11 @@ export const Login = () => {
           <h2 id="h2-log">Login </h2>
           <div id="underline"></div>
         </Typography>
-        <TextField
+        <MyTextField
           id="mail-log"
           label="Email"
           type="email "
+
           required
           onChange={(e) => setEmail(e.target.value)}
           InputProps={{
@@ -90,9 +109,10 @@ export const Login = () => {
               <EmailOutlinedIcon style={{ marginRight: "8px" }} id="lock" />
             ),
           }}
-        />
 
-        <TextField
+          />
+
+        <MyTextField
           id="pass-log"
           label="Password"
           type="password"
@@ -108,7 +128,17 @@ export const Login = () => {
           <FormGroup>
             <FormControlLabel
               id="chk-log"
-              control={<Checkbox size="xxl-small" />}
+              control={<Checkbox  size="xx-small"
+        {...label}
+        defaultChecked
+        sx={{
+          color:'#27374d',
+          '&.Mui-checked': {
+            color: '#27374d',
+          },
+        }}
+      />}
+              
             />
             <label id="rem-log"> Remember me</label>
           </FormGroup>
