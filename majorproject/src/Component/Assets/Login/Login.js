@@ -142,7 +142,7 @@ export const Login = () => {
             />
             <label id="rem-log"> Remember me</label>
           </FormGroup>
-          <Link href="#" id="fgt">
+          <Link href="#" id="fgt" to="/ForgetPassword">
             Forget Password?
           </Link>
         </div>

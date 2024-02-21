@@ -1,8 +1,22 @@
 import { Button, TextField, Typography } from '@mui/material'
 import React from 'react'
-import '.Reset.css'
+import './Reset.css'
 import { useState } from 'react'
 import Swal from 'sweetalert2'
+import { styled } from '@mui/system';
+
+const MyTextField = styled(TextField)(({ theme }) => ({
+  '& .MuiInputBase-root': {
+    '&.Mui-focused fieldset': {
+      borderColor: '#27374d', // Focused border color
+    },
+    '&.Mui-focused .MuiInputLabel-root': {
+      color: '#27374d', // Focused label color
+    },
+  },
+}));
+
+
 
 function Reset() {
   const [password, setPassword] = useState()
@@ -14,8 +28,8 @@ function Reset() {
       return
     }
 
-    if(password.length < 8){
-      Swal.fire('Error','Password must in 8 Characters','error')
+    if(password.length < 6){
+      Swal.fire('Error','Password must in 6 Characters','error')
       return
     }
 
@@ -28,23 +42,23 @@ function Reset() {
   return (
     <div id='reset-body'>
       <div id='reset'>
-        <Typography variant='h5'>Reset your Password</Typography>
-        <TextField
-          id=''
-          label='New Password'
+        <p className='reset-head'>Reset your Password</p>
+        <MyTextField
+          id='new-pass'
+          label='New-Password'
           variant='outlined'
           value={password}
           onChange={(e) => setPassword(e.target.value)} />
 
-        <TextField
-          id=''
-          label='Reset Password'
+        <MyTextField
+          id='con-pass'
+          label='Reset-Password'
           variant='outlined'
           type='password'
           value={resetpassword}
           onChange={(e) => setResetpassword(e.target.value)}
         />
-        <Button variant='contained' onClick={reset} color='primary'>Change</Button>
+        <Button className='btn-reset' variant='contained' onClick={reset} >Change Password</Button>
       </div>
     </div>
   )

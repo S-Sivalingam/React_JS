@@ -44,7 +44,7 @@ const ForgetPassword = () => {
   return (
     <div id='forget-body'>
        <div id='forget'>
-        
+    <div className='for-t-t'>   
       <Typography id="title" variant="h5"  gutterBottom>
         Enter your email to get OTP
       </Typography>
@@ -64,7 +64,7 @@ const ForgetPassword = () => {
           ),
         }}
         />
-
+</div> 
       <Button id='for-btn' type="submit" variant="contained" onClick={handleSubmit}>
         Submit
       </Button>

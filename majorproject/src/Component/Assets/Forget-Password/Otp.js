@@ -2,6 +2,24 @@ import React, { useState, useEffect } from 'react';
 import './Otp.css'
 import { Typography, Button } from '@mui/material';
 import { MuiOtpInput } from 'mui-one-time-password-input';
+import { styled } from '@mui/system';
+
+
+
+const MyMuiOtpInput = styled(MuiOtpInput)(({ theme }) => ({
+  '& .MuiInputBase-root': {
+    '&.Mui-focused fieldset': {
+      borderColor: '#27374d', // Focused border color
+    },
+    '&.Mui-focused .MuiInputLabel-root': {
+      color: '#27374d', // Focused label color
+    },
+  },
+}));
+
+
+
+
 
 const Otp = () => {
   const [otp, setOtp] = useState('');
@@ -36,24 +54,28 @@ const Otp = () => {
   return (
     <div id='otp-body'>
       <div id='otp'>
-        <Typography variant='h4'>Verify</Typography>
+        <p className='otp-head' variant='h4'>Verify</p>
 
-        <Typography variant='h5'>
+        <Typography className='otp-content'  variant='h5'>
           Your code was sent to your via email
         </Typography>
 
-        <MuiOtpInput
+        <MyMuiOtpInput
           id='otp-input'
           value={otp}
-          length={6}
+          length={4}
           numInputs={4}
           onChange={handleChange}
+
+
+
         />
 
         <Button
+        className='otp-verify'
           variant='contained'
-          color='primary'
-          /* onClick={handleSignUp} */
+          type='submit'
+        //  onClick={handleSignUp} 
         >
           Verify
         </Button>
@@ -61,7 +83,7 @@ const Otp = () => {
         {resendTime === 0 && (
           <Button
             variant='outlined'
-            color='primary'
+            className='otp-resend'
             onClick={handleResend}
           >
             Resend OTP
@@ -69,7 +91,7 @@ const Otp = () => {
         )}
 
         {resendTime !== 0 && (
-          <Typography variant='body2'>
+          <Typography className='otp-resendtime' variant='body2'>
             Resend OTP in {resendTime} seconds
           </Typography>
         )}
